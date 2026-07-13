@@ -6,9 +6,13 @@ Python에서는 문자열의 특정 위치를 가져오거나, 일부만 잘라�
 """
 
 # message 변수에 문자열을 저장합니다.
+
 message = "Python Basic"
+message: str = "파이썬"
 
 print("전체 문자열:", message)
+print("문자열 길이:", len(message))  # len()은 문자열 길이를 확인하는 함수입니다.   
+print(f"안녕하세요 \n \t{message} 입니다!")  # f-string은 문자열 안에 변수 값을 넣을 때 사용하는 편리한 문법입니다.
 
 # 문자열의 위치 번호는 0부터 시작합니다.
 # message[0]은 첫 번째 글자인 "P"를 의미합니다.
@@ -34,3 +38,9 @@ score = 95
 # f-string은 문자열 안에 변수 값을 넣을 때 사용하는 편리한 문법입니다.
 # 문자열 앞에 f를 붙이고, 중괄호 { } 안에 변수 이름을 넣습니다.
 print(f"{name}님의 점수는 {score}점입니다.")
+
+print("뒤 5글자:", message[0:3])  # 뒤에서 5글자를 가져옵니다.
+print("뒤 5글자:", message[-3])  # 뒤에서 5글자를 가져옵니다.
+print("뒤 5글자:", message)  # 뒤에서 5글자를 가져옵니다.
+
+print("이름을 입력해 주세요:", input())

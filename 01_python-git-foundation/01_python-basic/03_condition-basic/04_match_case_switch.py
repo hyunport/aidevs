@@ -9,10 +9,17 @@ Python 3.10부터 `match-case` 문법을 사용할 수 있습니다.
 
 # 사용자가 선택한 메뉴 번호라고 가정합니다.
 # 실제 프로그램에서는 input()으로 입력받을 수도 있습니다.
-menu = "2"
+# 입력 받은 숫자는 (1~3) 나머지 숫자가 입력 되면 프로그램 종료
+import sys
 
-print("선택한 메뉴:", menu)
+menu = input("(1~3) 고르거라")
 
+
+print("선택한 메뉴:", int(menu))
+
+if(menu != "1" and menu != "2" and menu != "3"):
+    print("입력이 잘못 되었습니다. 시스템 종료")
+    sys.exit()
 # match 뒤에는 비교할 기준 값을 씁니다.
 match menu:
     # menu 값이 "1"이면 아래 코드가 실행됩니다.

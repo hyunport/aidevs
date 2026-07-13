@@ -8,8 +8,10 @@
 
 # 변수는 값을 담는 이름입니다.
 # 오른쪽 값을 왼쪽 변수 이름에 저장한다고 이해하면 됩니다.
-user_name = "Jean"
-user_age = 30
+user_name = "Jean"  # string
+user_name = 'Kim'  # 같은 이름의 변수에 다른 값을 저장하면 이전 값은 사라집니다.
+user_age = 30   # 숫자
+user_height = 180.5 # 숫자
 is_beginner = True
 
 # 변수 이름 뒤에 : str, : int, : bool처럼 적는 것을 타입 힌트라고 합니다.
@@ -18,6 +20,8 @@ is_beginner = True
 name: str = "kim"
 age: int = 20
 is_student: bool = True
+
+print(type(name), type(age), type(user_height), type(is_student))
 
 # 문자열, 숫자, True/False 값을 각각 출력합니다.
 print("이름:", user_name, "입니다.")
@@ -38,3 +42,14 @@ price_text = "1000"
 # int()는 숫자 모양의 문자열을 정수로 변환합니다.
 price = int(price_text)
 print("가격 + 500 =", price + 500)
+
+# 변수가 숫자면 print하고 아니면 하지 말라는 조건문 예제입니다.
+
+price_text1 = "안녕하세요"
+print(price_text1 +" 반갑습니다.")
+
+a1 = 10.1
+a2 = 20
+a3 = 30
+
+print(int(a1))

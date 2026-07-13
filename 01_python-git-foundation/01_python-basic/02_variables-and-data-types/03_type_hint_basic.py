@@ -23,3 +23,27 @@ print("이름:", name)
 print("나이:", age)
 print("키:", height)
 print("학생인가요?", is_student)
+print(f"타입 힌트 예시: {name}, {age}, {height}, {is_student}")
+
+msg = '    1000    '
+num = int(msg)
+print(f"입력{msg.strip()}입니다") #깨끗한 데이터를 받기 위 빈칸을 제거하는 strip()함수 사용
+
+
+
+msg2: str = '12,000,000'
+num2 = int(msg2.replace(',', '')) #replace()함수는 특정 문자를 다른 문자로 바꾸는 함수입니다. 여기서는 ','를 제거하기 위해 공백으로 바꿨습니다.
+print(f"입력{msg2}입니다")
+
+
+
+# jmlee@tonesol.com 에서
+# ID 변수에 jmlee 입력
+# domain 변수에 tonesol 입력
+# id 와 domain을 출력 하시오
+# "id는 id이고, 도메인은 domain입니다."
+
+data: str = 'jmlee@tonesol.com'
+id: str = data[:data.index('@')] #index()함수는 특정 문자가 문자열에서 몇 번째 위치에 있는지 알려주는 함수입니다. 여기서는 '@'의 위치를 찾아서 그 앞까지 잘라내어 id에 저장합니다.
+domain: str = data[data.index('@') + 1:data.index('.')]
+print(f"id는 {id}이고, 도메인은 {domain}입니다.")

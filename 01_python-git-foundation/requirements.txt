@@ -11,6 +11,7 @@
 # 설치 명령:
 #   python -m pip install --upgrade pip
 #   pip install -r requirements.txt
+#   *pypy.org에서 가지고 와서 다운로드 함.
 
 
 # -----------------------------------------------------------------------------
