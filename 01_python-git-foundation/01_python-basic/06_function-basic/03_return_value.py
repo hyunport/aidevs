@@ -6,13 +6,19 @@ print는 화면에 보여 주는 것이고,
 return은 값을 다음 계산이나 다른 함수에서 다시 사용할 수 있게 해 줍니다.
 """
 
+def add(a: float, b: float) -> float:
+    if b == 0:
+        return None
+    return a / b
 
-def add(a, b):
-    result = a + b
+def devide(a: float, b: float) -> float:
+    result = a / b  # 연하색으로 변하면 입력해 놓고 쓰지 않는 변수라는 뜻
     return result
 
+divide_result = devide(10,0)
+print("나누기 결과:", divide_result)
 
-def make_greeting(name):
+def make_greeting(name: str) -> str:
     message = f"{name}님, 안녕하세요."
     return message
 
@@ -31,9 +37,14 @@ print(greeting)
 def check_number(number):
     if number < 0:
         return "음수입니다."
+    if number == 0:
+        return "0입니다."
+    if number > 0:
+        return "양수입니다."
+    return None
 
-    return "0 또는 양수입니다."
-
+msg = check_number(-3)
+print(msg)
 
 print(check_number(-3))
 print(check_number(10))

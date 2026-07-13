@@ -10,23 +10,38 @@
 """
 
 
-def calculate(a, b, operator):
-    if operator == "+":
-        return a + b
+# def calculate(a, b, operator):
+#     if operator == "+":
+#         return a + b
 
-    if operator == "-":
-        return a - b
+#     if operator == "-":
+#         return a - b
 
-    if operator == "*":
-        return a * b
+#     if operator == "*":
+#         return a * b
 
-    if operator == "/":
+#     if operator == "/":
+#         if b == 0:
+#             return "0으로 나눌 수 없습니다."
+#         return a / b
+
+#     return "지원하지 않는 연산자입니다."
+
+
+def calculate(a: int, b: int, OPERATOR: str) -> float:
+    result = 0
+    if OPERATOR == "+":
+        return a+b
+    if OPERATOR == "-":
+        return a-b
+    if OPERATOR == "*":
+        return a*b
+    if OPERATOR == "/":
         if b == 0:
-            return "0으로 나눌 수 없습니다."
+            return "0으로는 나눌 수 없습니다."
         return a / b
-
-    return "지원하지 않는 연산자입니다."
-
+    else:
+        return None
 
 print("계산 함수 테스트")
 
