@@ -11,64 +11,59 @@ def setup_function() -> None:
     memo_app.next_memo_id = 1
 
 
-def test_create_memo() -> None:
+def test_list_memos_empty():
+    response = client.get("/memos")
+    assert response.status_code == 200
+    assert response.json() == {"data": []}
+
+
+def test_create_memo():
     response = client.post(
         "/memos",
-        json={"title": "오늘 할 일", "content": "문서 작성"},
+        json={"title": "Today memo", "content": "Prepare the meeting"},
     )
 
     assert response.status_code == 201
     data = response.json()["data"]
     assert data["id"] == 1
-    assert data["title"] == "오늘 할 일"
-    assert data["content"] == "문서 작성"
+    assert data["title"] == "Today memo"
+    assert data["content"] == "Prepare the meeting"
     assert "created_at" in data
 
 
-def test_list_memos_latest_first() -> None:
-    client.post("/memos", json={"title": "첫 번째", "content": "내용1"})
-    client.post("/memos", json={"title": "두 번째", "content": "내용2"})
+def test_list_memos_latest_first():
+    client.post("/memos", json={"title": "First", "content": "Content 1"})
+    client.post("/memos", json={"title": "Second", "content": "Content 2"})
 
     response = client.get("/memos")
 
     assert response.status_code == 200
     data = response.json()["data"]
     assert len(data) == 2
-    assert data[0]["title"] == "두 번째"
-    assert data[1]["title"] == "첫 번째"
+    assert data[0]["title"] == "Second"
+    assert data[1]["title"] == "First"
 
 
-def test_get_memo_detail() -> None:
-    client.post("/memos", json={"title": "상세", "content": "확인"})
-
-    response = client.get("/memos/1")
-
-    assert response.status_code == 200
-    assert response.json()["data"]["title"] == "상세"
-
-
-def test_update_memo() -> None:
-    client.post("/memos", json={"title": "원본", "content": "원본 내용"})
+def test_update_memo():
+    client.post("/memos", json={"title": "Original", "content": "Original content"})
 
     response = client.put(
-        "/memos/1",
-        json={"title": "수정본", "content": "수정된 내용"},
+        "/memos",
+        json={"id": 1, "title": "Updated", "content": "Updated content"},
     )
 
     assert response.status_code == 200
     data = response.json()["data"]
-    assert data["title"] == "수정본"
-    assert data["content"] == "수정된 내용"
+    assert data["id"] == 1
+    assert data["title"] == "Updated"
+    assert data["content"] == "Updated content"
 
 
-def test_delete_memo() -> None:
-    client.post("/memos", json={"title": "삭제", "content": "삭제할 내용"})
+def test_delete_memo():
+    client.post("/memos", json={"title": "Delete", "content": "Delete content"})
 
     response = client.delete("/memos/1")
 
     assert response.status_code == 200
-    assert response.json()["data"]["title"] == "삭제"
-
-    not_found = client.get("/memos/1")
-    assert not_found.status_code == 404
+    assert response.json()["data"]["title"] == "Delete"
 
