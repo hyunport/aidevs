@@ -32,4 +32,16 @@ def read_root() -> dict[str, str]:
 def health_check() -> dict[str, str]:
     """서버가 살아 있는지 확인하는 가장 기본적인 점검용 API입니다."""
 
-    return {"status": "ok"}
+    return {"status": "ok bay"}
+
+@app.get("/che")
+def che_check() -> dict[str, str]:
+    """서버가 살아 있는지 확인하는 가장 기본적인 점검용 API입니다."""
+
+    return {"status": "oosfhfdhdh"}
+
+@app.get("/sherch")
+def sherch_check() -> dict[str, str]:
+    """서버가 살아 있는지 확인하는 가장 기본적인 점검용 API입니다."""
+    num = 10/2
+    return {"status": "search ok"}

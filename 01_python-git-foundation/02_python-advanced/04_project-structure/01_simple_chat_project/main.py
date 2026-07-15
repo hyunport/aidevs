@@ -17,21 +17,28 @@ r"""01_simple_chat_project의 실행 시작점입니다.
 """
 
 from app.services import create_chat_message
+from models import RequestchatMessage
 
 
 def main() -> None:
-    question = "프로젝트 구조는 왜 나누나요?"
+    while True:
+        question = input(" 질문하세요? ")
+        if question == "q":
+            break
+        print(f"질문: {question}")
+        print("LLM이 처리 중입니다. .............")
+        
+        try:
+            request_msg = RequestchatMessage(
+                prompt=question,
+                user='id01',
 
-    message = create_chat_message(question)
-
-    print("질문:")
-    print(message.question)
-    print()
-    print("답변:")
-    print(message.answer)
-    print()
-    print("사용 모델:")
-    print(message.model)
-
+            )
+            reponse_msg = create_chat_message(request_msg)
+            print()
+            print(f"답변:  ({reponse_msg.msg}  {reponse_msg.model}) {reponse_msg.answer}")
+            print()
+        except ConnectionRefusedError:
+            print("네트워크가 불안합니다. 다시 시도하세요")
 
 main()

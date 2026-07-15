@@ -1,13 +1,16 @@
-r"""02_simple_chat_project의 검증 포함 서비스 함수 테스트입니다.
+r"""01_simple_chat_project의 기본 서비스 함수 테스트입니다.
 
 실행 위치:
     C:\aidev\01_python-git-foundation
 
 실행 명령:
-    python -m pytest .\02_python-advanced\04_project-structure\02_simple_chat_project
+    python -m pytest .\02_python-advanced\04_project-structure\01_simple_chat_project
+
+이 테스트의 목적:
+    create_chat_message 함수가 ChatMessage object를 잘 만드는지 확인합니다.
+    아직 저장 기능이나 예외 처리는 테스트하지 않습니다.
 """
 
-import pytest
 import sys
 from pathlib import Path
 
@@ -19,21 +22,19 @@ for module_name in list(sys.modules):
     if module_name == "app" or module_name.startswith("app."):
         del sys.modules[module_name]
 
-from app.services import create_chat_message, normalize_question, validate_question
+from app.services import create_chat_message, create_mock_answer
 
 
-def test_normalize_question_removes_spaces() -> None:
-    assert normalize_question("  FastAPI  ") == "FastAPI"
+def test_create_mock_answer_contains_question() -> None:
+    answer = create_mock_answer("FastAPI란?")
 
-
-def test_validate_question_raises_error_when_empty() -> None:
-    with pytest.raises(ValueError):
-        validate_question("   ")
+    assert "FastAPI란?" in answer
+    assert "연습 답변" in answer
 
 
 def test_create_chat_message_returns_object() -> None:
     message = create_chat_message("프로젝트 구조란?")
 
     assert message.question == "프로젝트 구조란?"
+    assert "프로젝트 구조란?" in message.answer
     assert message.model == "practice-model"
-    assert "연습 답변" in message.answer

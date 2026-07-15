@@ -1,27 +1,60 @@
-r"""직접 만든 모듈을 import하는 예제입니다.
+r"""JSON 파일을 안전하게 읽는 예제입니다.
 
 실행 위치:
     C:\aidev\01_python-git-foundation
 
 실행 명령:
-    python .\02_python-advanced\01_function-and-import\03_import_my_module.py
+    python .\02_python-advanced\02_exception-debugging\03_read_json_safely.py
 
 이 예제의 목표:
-    my_tools.py 파일에 있는 함수를 현재 파일에서 가져와 사용합니다.
-    뒤 과정의 FastAPI 프로젝트도 여러 파일을 import해서 동작합니다.
+    1. JSON 파일을 읽습니다.
+    2. 파일이 없을 때의 오류를 처리합니다.
+    3. JSON 문법이 깨졌을 때의 오류를 처리합니다.
 """
 
-from my_tools import create_answer, normalize_text
+import json
+
+from mypackage.file import read_json_safely
+
+from pathlib import Path
+
+
+CURRENT_DIR = Path(__file__).parent
+
+
+def read_json_safely(file_name: str) -> dict:
+    """
+    JSON 파일을 읽고 dict로 반환합니다.
+   
+    오류가 나면 프로그램을 바로 종료하지 않고 빈 dict를 반환합니다.
+    """
+    file_path = CURRENT_DIR / file_name
+    try:
+        text = file_path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        raise FileNotFoundError("파일이 없어요")
+
+    try:
+        # JSON 파일을 Dict로 변경
+        return json.loads(text)
+    except json.decoder.JSONDecodeError as error:
+        raise error
 
 
 def main() -> None:
-    question = "  import는 왜 필요한가요?  "
-
-    cleaned_question = normalize_text(question)
-    answer = create_answer(cleaned_question)
-
-    print("정리된 질문:", cleaned_question)
-    print("답변:", answer)
+    # file1 = read_json_safely("config.json")
+    # print(file1)
+    # print(type(file1))
+    # print(file1["app_name"])
+    try:
+        file = read_json_safely("broken_config.json")
+    except FileNotFoundError:
+        print("파일이 없습니다")
+        return
+    except json.decoder.JSONDecodeError:
+        print("파일이 문제가 있네요 확인 하세요")
+        return
+    print(file)
 
 
 main()

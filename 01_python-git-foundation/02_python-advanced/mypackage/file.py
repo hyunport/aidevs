@@ -1,16 +1,3 @@
-r"""함수 기본 복습 예제입니다.
-
-실행 위치:
-    C:\aidev\01_python-git-foundation
-
-실행 명령:
-    python .\02_python-advanced\01_function-and-import\01_function_basic_review.py
-
-이 예제의 목표:
-    1. 함수를 왜 만드는지 이해합니다.
-    2. 함수에 값을 전달하고 결과를 return으로 받습니다.
-    3. 이후 FastAPI endpoint 안에서도 작은 함수로 로직을 나눌 준비를 합니다.
-"""
 
 
 def normalize_question(question: str) -> str:

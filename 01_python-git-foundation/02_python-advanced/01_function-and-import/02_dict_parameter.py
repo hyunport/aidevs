@@ -23,9 +23,16 @@ def build_chat_response(request_data: dict) -> dict:
         }
     """
 
-    user = request_data.get("user", "anonymous")
-    message = request_data.get("message", "").strip()
-    model = request_data.get("model", "practice-model")
+    # user = request_data.get("user", "anonymous")
+    # message = request_data.get("message", "").strip()
+    # model = request_data.get("model", "practice-model")
+
+    user = request_data["user"]
+    message = request_data["message"]
+    model = request_data["model"]
+
+    print("LLM 물어보는 중..")
+    print("LLM 결과 받는 중..")
 
     return {
         "user": user,
@@ -34,21 +41,32 @@ def build_chat_response(request_data: dict) -> dict:
         "answer": f"{user}님, '{message}'에 대한 연습용 답변입니다.",
     }
 
+from my team.llm import build_chat_response as bcr
+
+bcr()
 
 def main() -> None:
+    msg = input("뭐가 궁금해? ")
+
+    # 아무것도 없을 때 끝내는 기능
+    if msg == "":
+        print("대화를 종료합니다.")
+        return
+
+    # 질문을 보내기 전에 dict 형태로 받을거라는 것을 보낸다.
     request_data = {
         "user": "kim",
-        "message": "  Python dict는 어디에 쓰나요?  ",
-        "model": "practice-model",
+        "message": f"{msg} ",
+        "model": "Gpt 5.0",
     }
 
     response = build_chat_response(request_data)
 
     print("요청 dict:")
-    print(request_data)
+    print(request_data["message"])
     print()
     print("응답 dict:")
-    print(response)
+    print(response["answer"])
 
 
 main()

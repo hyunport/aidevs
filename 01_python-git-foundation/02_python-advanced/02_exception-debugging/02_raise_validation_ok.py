@@ -11,29 +11,24 @@ r"""raise로 직접 오류를 만드는 예제입니다.
     뒤 과정에서는 FastAPI가 이런 검증 흐름을 HTTP 오류로 바꾸어 응답합니다.
 """
 
-
 def validate_question(question: str) -> str:
     """질문이 비어 있으면 ValueError를 발생시킵니다."""
 
     cleaned = question.strip()
     if cleaned == "":
-         return None
+         raise ValueError("E0001")
     return cleaned
-
-    # if cleaned == "":
-    #     raise ValueError("질문은 비워둘 수 없습니다.")
-
-    # return cleaned
-
 
 def main() -> None:
     questions = ["FastAPI란?", "   ", "Supabase란?"]
 
     for question in questions:
-        # try:
-            cleaned_question = validate_question(question)
+            try:
+                cleaned_question = validate_question(question)
+            except ValueError:
+                 print("비정상")
+                 break
             print("정상 질문:", cleaned_question)
-        # except ValueError as error:
-            # print("오류 처리:", error)
+
 
 main()

@@ -1,4 +1,5 @@
-"""핵심 처리 로직을 모아두는 파일입니다.
+"""
+핵심 처리 로직을 모아두는 파일입니다.
 
 이 예제에서는 질문을 받아 연습용 답변을 만드는 함수만 둡니다.
 
@@ -20,13 +21,17 @@ def create_mock_answer(question: str) -> str:
     return f"'{question}'에 대한 첫 번째 프로젝트 구조 연습 답변입니다."
 
 
-def create_chat_message(question: str) -> ChatMessage:
-    """질문을 받아 ChatMessage object를 만듭니다."""
-
+def create_chat_message(question: Requestmsg) -> ResoponseMsg:
+    
+    """
+    질문을 받아 ChatMessage object를 만듭니다.\n
+    네트워크가 끊어지면 ConnectionRefusedError 발생
+    """
+    if question == "1":
+        raise ConnectionRefusedError("Error")
     answer = create_mock_answer(question)
 
     return ChatMessage(
-        question=question,
         answer=answer,
-        model="practice-model",
+        model="GPT5",
     )

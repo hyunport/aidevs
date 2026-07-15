@@ -12,18 +12,29 @@ dataclass:
     어떤 값이 필요한지 코드에서 더 분명하게 보여 줍니다.
 """
 
-# dataclasses 파이썬에 기본으로 제공해주는 것.
 from dataclasses import dataclass
 
 
 @dataclass
-class ChatMessage:
-    """질문과 답변 하나를 담는 단순한 데이터 object입니다."""
+class RequestchatMessage:
+    """
+    사용자의 prompt를 전송 한다.\n
+    사용자의 ID, 방법을 같이 전송합니다.
+    """
 
-    question: str
+    prompt: str
+    user: str
+    metod: str = "사납게"
+
+
+@dataclass
+class ResponsechatMessage:
+    
+    """
+    LLM을 통해 질문의 답변을 응답 합니다.\n
+    응답, 상태메시지, 모델을 전송합니다.
+    """
+
     answer: str
     model: str
-
-    # answer: str
-    # model: str
-    # msg: str = "ok"
+    msg: str = "ok"
