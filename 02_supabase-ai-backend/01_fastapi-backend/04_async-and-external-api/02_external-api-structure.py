@@ -36,7 +36,7 @@ async def get_external_post(post_id: int):
     try:
         # AsyncClient는 async 함수 안에서 외부 HTTP 요청을 보낼 때 사용합니다.
         # timeout=5는 외부 API가 너무 오래 응답하지 않을 때 5초 뒤 중단하기 위한 설정입니다.
-        async with httpx.AsyncClient(timeout=5) as client:
+        async with httpx.AsyncClient(timeout=20) as client:
             # await client.get(url)은 외부 서버 응답을 기다립니다.
             response = await client.get(url)
             # 상태 코드가 4xx 또는 5xx이면 HTTPStatusError를 발생시킵니다.

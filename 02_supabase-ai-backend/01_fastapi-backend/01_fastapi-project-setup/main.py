@@ -1,8 +1,5 @@
-"""FastAPI 첫 실행용 main.py 파일입니다.
-
-FastAPI 서버를 실행할 때는 보통 `uvicorn main:app --reload` 명령을 사용합니다.
-이 명령이 동작하려면 현재 폴더에 main.py 파일이 있고,
-그 안에 app = FastAPI() 형태의 변수가 있어야 합니다.
+"""
+uvicorn main:app --reload
 """
 
 from fastapi import FastAPI
