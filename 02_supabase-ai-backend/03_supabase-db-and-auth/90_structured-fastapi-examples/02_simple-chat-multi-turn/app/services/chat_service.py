@@ -92,8 +92,11 @@ def chat(request: ChatRequest) -> ChatResponse:
     """이전 대화를 문맥으로 사용해 새 답변을 만들고 저장합니다."""
 
     conversation_id = str(request.conversation_id) if request.conversation_id else str(uuid4())
+    # 사용자의 아이디와 conversation을  DB에 조회한다.
     history = get_recent_history(conversation_id)
+    # 가져온 내용을 추가해서 다시 보낸다.
     answer, model = create_gemini_answer(make_prompt(history, request.message))
+    # 받은 내용을 DB에 추가한다.
     save_turn(conversation_id, request.message, answer, model)
 
     return ChatResponse(

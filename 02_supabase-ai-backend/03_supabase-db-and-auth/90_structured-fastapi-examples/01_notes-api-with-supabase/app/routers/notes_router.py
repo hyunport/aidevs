@@ -21,17 +21,20 @@ def health() -> dict[str, str | bool]:
 
 @router.get("/notes")
 def list_notes() -> dict[str, int | list[NotePublic]]:
+    """데이터를 전체 조회 합니다."""
     notes = notes_service.list_notes()
     return {"count": len(notes), "data": notes}
 
 
 @router.post("/notes", response_model=NotePublic, status_code=status.HTTP_201_CREATED)
 def create_note(note: NoteCreate) -> NotePublic:
+    """데이터를 삽입 합니다."""
     return notes_service.create_note(note)
 
 
 @router.get("/notes/{note_id}", response_model=NotePublic)
 def get_note(note_id: str) -> NotePublic:
+    """id에 맞는 데이터를 조회합니다.."""
     note = notes_service.get_note(note_id)
     if note is None:
         raise HTTPException(status_code=404, detail="Note not found")

@@ -29,4 +29,4 @@ class NotePublic(BaseModel):
     id: UUID
     title: str
     content: str
-    created_at: datetime | None = None
+    created_at: datetime | None = None # 빈칸일 때를 나타낸다.

@@ -23,6 +23,8 @@ class ChatResponse(BaseModel):
 class ChatLogPublic(BaseModel):
     """GET /logs에서 반환하는 로그 1건의 모델입니다."""
 
+    ### sql문 양식
+
     id: str
     user_message: str
     assistant_message: str | None = None
