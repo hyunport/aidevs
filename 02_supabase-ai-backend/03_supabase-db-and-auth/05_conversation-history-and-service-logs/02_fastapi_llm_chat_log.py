@@ -166,8 +166,8 @@ def create_gemini_answer(message: str) -> tuple[str, str]:
         model=model,
         contents=prompt,
         config={
-            "temperature": 0.3,
-            "max_output_tokens": 300,
+            # "temperature": 0.3,
+            # "max_output_tokens": 300,
         },
     )
 
