@@ -1,6 +1,8 @@
 import pandas as pd  # 목록 데이터를 표와 차트로 다루기 위해 pandas를 pd라는 별칭으로 가져옵니다.
 import streamlit as st  # Python 코드로 웹 화면을 만들기 위해 Streamlit을 st라는 별칭으로 가져옵니다.
 
+# 코드를 보고 화면을 나태난다는 것을 알아야 함.
+
 st.title("DataFrame 만들기")  # Streamlit 화면의 가장 큰 제목을 표시합니다.
 
 students = [  # 계산 결과나 입력값을 이후 코드에서 다시 쓰기 위해 변수에 저장합니다.
@@ -13,5 +15,5 @@ df = pd.DataFrame(students)  # 딕셔너리 데이터를 행과 열을 가진 Da
 
 st.write("원본 데이터")  # 문자열, 숫자, 객체를 Streamlit 화면에 출력합니다.
 st.dataframe(df)  # 표 형태의 데이터를 스크롤 가능한 DataFrame UI로 표시합니다.
-st.write("컬럼 목록:", list(df.columns))  # 문자열, 숫자, 객체를 Streamlit 화면에 출력합니다.
-
+# st.write("컬럼 목록:", list(df.columns))  # 문자열, 숫자, 객체를 Streamlit 화면에 출력합니다. 이 부분은 개발 할때 사용하고 완료되면 주석으로 막는다. 많은 데이트를 쉽게 보기 위한방법.
+st.write("컬럼 목록:", students)
