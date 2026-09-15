@@ -1,0 +1,6 @@
+httpx
+psycopg[binary]
+pgvector
+python-dotenv
+redis
+

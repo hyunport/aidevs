@@ -2,7 +2,7 @@ r"""최근 대화 이력을 백엔드로 함께 보내 문맥을 이어가는 St
 
 실행 전 준비:
     1. 05_ai-chatbot-interface/00_sample_backend/.env에 GEMINI_API_KEY를 설정합니다.
-    2. 05_ai-chatbot-interface/00_sample_backend를 먼저 실행합니다.
+    2. 05_ai-chatbot-interface/00_sample_backend를 먼저 실행합니다.=
 
 백엔드 실행:
     cd C:\aidev\03_supabase-ai-frontend

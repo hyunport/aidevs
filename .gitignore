@@ -19,6 +19,7 @@ dist/
 # Local environment and secrets
 .env
 .env.*
+.env copy
 !.env.example
 
 # Editor and OS files
